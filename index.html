@@ -4,6 +4,7 @@
 <title>Jurnal Mengajar Digital – SDN Lanas 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 <style>
 :root{--p:#3b3fd8;--p2:#2328a8;--ink:#141538;--a:#ffb020;--bg:#eef0fb;--c:#fff;--t:#1a1b3a;--m:#6b6f93;--b:#e1e4f4;--r:#e5484d;--g:#12a36b;--sh:0 1px 2px rgba(20,21,56,.05),0 8px 24px -12px rgba(59,63,216,.22);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d0e24;--c:#16183a;--t:#e8e9fb;--m:#9a9dc6;--b:#2a2d5c;--ink:#090a1f}}
@@ -50,6 +51,25 @@ label{font-size:12.5px;color:var(--m);display:block;margin-bottom:4px;font-weigh
 @media(max-width:760px){.lg{grid-template-columns:1fr}.lg-l{padding:24px}.lg-l h1{font-size:23px}header.h{padding:10px 14px}.wrap{flex-direction:column}nav{position:fixed;bottom:0;left:0;right:0;width:auto;display:flex;overflow-x:auto;z-index:9;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));border-radius:20px 20px 0 0}nav a{flex-direction:column;font-size:10px;gap:2px;padding:7px 11px;white-space:nowrap;margin:0}main{padding:16px 14px 96px}.h .ur .nm{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 @media print{html,body{background:#fff!important}body>.app{display:none!important}#pv{display:block;background:#fff;color:#000;padding:0}}
+
+.m3d{display:flex;gap:3px;perspective:700px;margin:0 0 6px}
+.m3d span{display:inline-block;font-size:54px;line-height:1;font-weight:800;color:#ffd166;transform-style:preserve-3d;
+text-shadow:1px 1px 0 #f0a500,2px 2px 0 #e09600,3px 3px 0 #d08900,4px 4px 0 #c07c00,5px 5px 0 #b06f00,6px 6px 0 #a06300,7px 7px 0 #8f5800,9px 12px 14px rgba(0,0,0,.45);
+animation:m3 3.4s ease-in-out infinite;animation-delay:calc(var(--i)*.14s)}
+@keyframes m3{0%,100%{transform:rotateY(-24deg) rotateX(8deg) translateY(0)}50%{transform:rotateY(24deg) rotateX(-4deg) translateY(-8px)}}
+.m3s{font-size:13.5px;font-weight:500;opacity:.95;margin:2px 0 14px}.m3s b{color:var(--a);font-weight:800;font-size:15px}
+.m3d.sm{margin:0;gap:1px}.m3d.sm span{font-size:17px;letter-spacing:.04em;text-shadow:1px 1px 0 #f0a500,2px 2px 0 #d08900,3px 3px 0 #b06f00,4px 5px 5px rgba(0,0,0,.45);animation-name:m3s}
+@keyframes m3s{0%,100%{transform:rotateY(-25deg) translateY(0)}50%{transform:rotateY(25deg) translateY(-2px)}}
+.m3r{display:flex;align-items:center;gap:10px;margin-bottom:3px}.m3p{font-size:11px;font-weight:500;opacity:.9}.m3p b{color:var(--a);font-weight:800}
+@media(max-width:760px){.m3d span{font-size:40px}.m3p{display:none}}
+@media(prefers-reduced-motion:reduce){.m3d span{animation:none;transform:rotateY(-12deg)}}
+.m3d span{font-family:'Bungee','Impact','Arial Black',sans-serif;font-weight:400;letter-spacing:.02em}
+.m3d.sm span{letter-spacing:.06em}
+.lg{max-width:900px}
+.m3d span{font-size:74px;text-shadow:1px 1px 0 #f0a500,2px 2px 0 #e09600,3px 3px 0 #d08900,4px 4px 0 #c07c00,5px 5px 0 #b06f00,6px 6px 0 #a06300,7px 7px 0 #8f5800,8px 8px 0 #7f4d00,10px 14px 16px rgba(0,0,0,.5)}
+.m3d.sm span{font-size:24px;text-shadow:1px 1px 0 #f0a500,2px 2px 0 #d08900,3px 3px 0 #b06f00,4px 5px 6px rgba(0,0,0,.5)}
+.m3s{font-size:14.5px}.m3p{font-size:11.5px}
+@media(max-width:760px){.m3d span{font-size:min(54px,14vw)}}
 </style><style>
 /* ===== Tema "Senja Biru" ===== */
 :root{--p:#5b3df5;--p2:#3a1fd1;--ink:#0e0b2e;--a:#ffc233;--bg:#f4f2ff;--b:#e6e2fb;--sh:0 2px 4px rgba(40,20,120,.04),0 18px 40px -22px rgba(91,61,245,.45)}
@@ -118,14 +138,14 @@ async function init(){
 }
 function shell(body){const u=user();const G=[['dash','🏠','Dashboard'],['jurnal','📝','Jurnal Mengajar'],['refl','💭','Refleksi'],['rekap','📋','Rekap Jurnal'],['profil','👤','Profil']],K=[['dash','🏠','Dashboard'],['mon','🔍','Monitoring Jurnal'],['refk','💭','Refleksi Guru'],['rg','👥','Rekap Guru'],['rp','📊','Rekap Pembelajaran'],['lap','🖨️','Laporan'],['dg','🧑‍🏫','Data Guru'],['set','⚙️','Pengaturan']];
  const M=u.role==='ks'?K:G;
- return `<header class="h"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b1c00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/></svg></div><div><b>Jurnal Mengajar Digital</b><small>UPTD SPF SD Negeri Lanas 1 · Tahun Pelajaran 2026/2027</small></div><div class="ur"><div class="nm">${esc(u.nama)}<br><a href="#" onclick="out();return false">Keluar</a></div><div class="av">${esc((u.nama||'?').trim().charAt(0).toUpperCase())}</div></div></header>
+ return `<header class="h"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b1c00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/></svg></div><div><div class="m3r"><div class="m3d sm" role="img" aria-label="MANTRA"><span style="--i:0">M</span><span style="--i:1">A</span><span style="--i:2">N</span><span style="--i:3">T</span><span style="--i:4">R</span><span style="--i:5">A</span></div><span class="m3p"><b>M</b>engajar <b>A</b>ktif <b>N</b>yata <b>T</b>ercatat <b>R</b>api <b>A</b>kurat</span></div><b>Jurnal Mengajar Digital</b><small>UPTD SPF SD Negeri Lanas 1 · Tahun Pelajaran 2026/2027</small></div><div class="ur"><div class="nm">${esc(u.nama)}<br><a href="#" onclick="out();return false">Keluar</a></div><div class="av">${esc((u.nama||'?').trim().charAt(0).toUpperCase())}</div></div></header>
  <div class="wrap"><nav>${M.map(m=>`<a class="${route===m[0]?'on':''}" onclick="go('${m[0]}')">${m[1]} <span>${m[2]}</span></a>`).join('')}<a onclick="out()">🚪 <span>Keluar</span></a></nav><main>${body}</main></div>`}
 function go(r){route=r;edit=null;flt={};render()}
 function out(){me=null;try{sessionStorage.removeItem('jm_u')}catch(e){}render()}
 function doLogin(){const u=st.users.find(x=>x.user===$('#lu').value.trim()&&x.pw===hash($('#lp').value));if(!u)return toast('Username atau password salah');me=u.id;try{sessionStorage.setItem('jm_u',me)}catch(e){}route='dash';lg('Login','');save();render()}
 function render(){
  const A=$('#app');
- if(!user()){A.innerHTML=`<div class="lg-bg"><div class="lg"><div class="lg-l"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b1c00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/></svg></div><div><h1>Jurnal Mengajar Digital</h1><p style="margin-top:10px">Pencatatan dan pemantauan kegiatan pembelajaran guru secara tertib, transparan, dan akuntabel.</p></div><p>UPTD SPF SD Negeri Lanas 1<br>Kec. Botolinggo · Kab. Bondowoso · Jawa Timur<br>Tahun Pelajaran 2026/2027</p></div><div class="lg-r"><h2>Masuk</h2><label for="lu">Username</label><input id="lu" autocapitalize="none" autocomplete="username"><br><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"><br><button onclick="doLogin()">Masuk</button><p class="hint">Akun awal Kepala Sekolah: <b>kepsek</b> / <b>lanas1</b> (segera ubah di Pengaturan). Akun guru dibuat oleh Kepala Sekolah di menu Data Guru.</p></div></div></div>`;return}
+ if(!user()){A.innerHTML=`<div class="lg-bg"><div class="lg"><div class="lg-l"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b1c00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/></svg></div><div><div class="m3d" role="img" aria-label="MANTRA"><span style="--i:0">M</span><span style="--i:1">A</span><span style="--i:2">N</span><span style="--i:3">T</span><span style="--i:4">R</span><span style="--i:5">A</span></div><div class="m3s"><b>M</b>engajar <b>A</b>ktif <b>N</b>yata <b>T</b>ercatat <b>R</b>api <b>A</b>kurat</div><h1>Jurnal Mengajar Digital</h1><p style="margin-top:10px">Pencatatan dan pemantauan kegiatan pembelajaran guru secara tertib, transparan, dan akuntabel.</p></div><p>UPTD SPF SD Negeri Lanas 1<br>Kec. Botolinggo · Kab. Bondowoso · Jawa Timur<br>Tahun Pelajaran 2026/2027</p></div><div class="lg-r"><h2>Masuk</h2><label for="lu">Username</label><input id="lu" autocapitalize="none" autocomplete="username"><br><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"><br><button onclick="doLogin()">Masuk</button><p class="hint">Akun awal Kepala Sekolah: <b>kepsek</b> / <b>lanas1</b> (segera ubah di Pengaturan). Akun guru dibuat oleh Kepala Sekolah di menu Data Guru.</p></div></div></div>`;return}
  const u=user(),ks=u.role==='ks';
  const V={dash:ks?vDashK:vDashG,jurnal:vJurnal,form:vForm,rekap:vRekap,refl:vRefl,rform:vRForm,refk:vRefK,profil:vProfil,mon:vMon,rg:vRG,rp:vRP,lap:vLap,dg:vDG,set:vSet};
  A.innerHTML=shell((V[route]||vDashG)());
