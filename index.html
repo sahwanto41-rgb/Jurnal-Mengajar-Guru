@@ -161,7 +161,10 @@ function editJ(id){edit={...st.jr.find(j=>j.id===id)};route='form';render()}
 function delJ(id){if(!confirm('Hapus jurnal ini?'))return;const j=st.jr.find(x=>x.id===id);st.jr=st.jr.filter(x=>x.id!==id);lg('Hapus jurnal',fd(j.tgl)+' '+j.kelas+' jam '+j.jam);save();render()}
 function vForm(){const e=edit,u=user(),k=u.kelas?u.kelas.split(',').map(x=>x.trim()):[];
  const T=(id,l,rows,v)=>`<div class="w2"><label>${l}</label><textarea id="${id}" rows="${rows}">${esc(v)}</textarea></div>`;
- return `<h2>${e.id?'Edit':'Tambah'} Jurnal Mengajar</h2><div class="card"><div class="f">
+ const pl=e.id?[]:(st.ma||[]).filter(m=>m.gid===me).sort((a,b)=>(a.tgl||'').localeCompare(b.tgl||'')),
+ used=new Set((st.jr||[]).filter(j=>j.gid===me&&j.maid).map(j=>j.maid)),
+ PK=pl.length?`<div class="w2" style="background:#eef6ff;border-radius:10px;padding:10px"><label>Isi otomatis dari rencana (Planner Perangkat Ajar)</label><select id="plan" onchange="fillPlan(this.value)"><option value="">— pilih rencana (${pl.length}) —</option>${pl.map(m=>`<option value="${esc(m.id)}">${esc(fd(m.tgl))} · Kelas ${esc(m.kelas)} · ${esc(m.mapel)} · ${esc(m.materi)}${used.has(m.maid)?' (sudah dijadikan jurnal)':''}</option>`).join('')}</select></div>`:'';
+ return `<h2>${e.id?'Edit':'Tambah'} Jurnal Mengajar</h2><div class="card"><div class="f">${PK}
  <div><label>Tanggal</label><input type="date" id="tgl" value="${e.tgl}" onchange="$('#hari').value=hariOf(this.value)"></div>
  <div><label>Hari</label><input id="hari" readonly value="${hariOf(e.tgl)}"></div>
  <div><label>Nama Guru</label><input readonly value="${esc(u.nama)}"></div>
@@ -179,8 +182,11 @@ function vForm(){const e=edit,u=user(),k=u.kelas?u.kelas.split(',').map(x=>x.tri
  </div><br><button onclick="saveJ()">💾 Simpan</button> <button class="s" onclick="go('jurnal')">Batal</button></div>`}
 function calc(){const t=+$('#total').value||0,a=+$('#absen').value||0;$('#hadir').value=Math.max(0,t-a);if(a>t)$('#absen').style.borderColor='var(--r)';else $('#absen').style.borderColor=''}
 let foto='';function pic(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,480/im.width);c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);foto=c.toDataURL('image/jpeg',.6);$('#pv0').src=foto;$('#pv0').style.display='block'};im.src=r.result};r.readAsDataURL(f)}
+function fillPlan(id){const m=(st.ma||[]).find(x=>x.id===id);if(!m)return;const set=(k,v)=>{const el=$('#'+k);if(el&&v!=null)el.value=v};
+ set('tgl',m.tgl);set('hari',hariOf(m.tgl));set('kelas',m.kelas);set('fase',m.fase||FASE[String(m.kelas).replace(/\D/g,'')]||'');set('mapel',m.mapel);
+ set('materi',m.materi);set('tujuan',m.tujuan);set('kegiatan',m.kegiatan);set('metode',m.metode);set('media',m.media);edit.maid=m.maid;toast('Terisi dari rencana. Lengkapi jam ke-, jumlah siswa, dan kehadiran.')}
 function saveJ(){const g=id=>$('#'+id).value.trim(),e=edit;
- const o={id:e.id||uid(),gid:me,tgl:g('tgl'),kelas:g('kelas'),mapel:g('mapel'),fase:g('fase'),jam:g('jam'),total:g('total'),absen:+g('absen')||0,materi:g('materi'),tujuan:g('tujuan'),kegiatan:g('kegiatan'),metode:g('metode'),media:g('media'),kendala:g('kendala'),tl:g('tl'),catatan:g('catatan'),foto:foto||e.foto||''};
+ const o={id:e.id||uid(),gid:me,tgl:g('tgl'),kelas:g('kelas'),mapel:g('mapel'),fase:g('fase'),jam:g('jam'),total:g('total'),absen:+g('absen')||0,materi:g('materi'),tujuan:g('tujuan'),kegiatan:g('kegiatan'),metode:g('metode'),media:g('media'),kendala:g('kendala'),tl:g('tl'),catatan:g('catatan'),foto:foto||e.foto||'',maid:e.maid||''};
  if(!o.tgl||!o.kelas||!o.mapel||!o.jam)return toast('Tanggal, kelas, mata pelajaran, dan jam ke- wajib diisi.');
  if(+o.absen>+o.total)return toast('Siswa tidak hadir tidak boleh melebihi jumlah siswa.');
  if(st.jr.some(j=>j.id!==o.id&&j.gid===me&&j.tgl===o.tgl&&j.kelas.toLowerCase()===o.kelas.toLowerCase()&&j.jam===o.jam))return toast('Jurnal ganda: sudah ada jurnal pada tanggal, kelas, dan jam yang sama.');
@@ -307,7 +313,7 @@ const API='https://script.google.com/macros/s/AKfycbxUvdh63lky1evBhSJwKy345l2_m6
 async function pull(){const r=await fetch(API);const o=await r.json();return o.j?JSON.parse(o.j):null}
 function merge(r,l){if(!r)return l;const del=new Set([...(r.del||[]),...(l.del||[])]);
  const mm=(a,b,k)=>{const m=new Map();[...(a||[]),...(b||[])].forEach(x=>{const y=m.get(k(x));const rc=o=>Object.values(o).filter(v=>v&&v!=='Kepala Sekolah').length;if(!y||(x.upd||'')>(y.upd||'')||((x.upd||'')===(y.upd||'')&&rc(x)>=rc(y)))m.set(k(x),x)});return[...m.values()]};
- return{v:Math.max(r.v||0,l.v||0),del:[...del],rf:mm(r.rf,l.rf,x=>x.id).filter(j=>!del.has(j.id)),users:mm(r.users,l.users,x=>x.id).filter(u=>!del.has(u.id)),jr:mm(r.jr,l.jr,x=>x.id).filter(j=>!del.has(j.id)),log:mm(r.log,l.log,x=>x.t+x.u+x.a).sort((a,b)=>b.t.localeCompare(a.t)).slice(0,300)}}
+ return{v:Math.max(r.v||0,l.v||0),del:[...del],rf:mm(r.rf,l.rf,x=>x.id).filter(j=>!del.has(j.id)),users:mm(r.users,l.users,x=>x.id).filter(u=>!del.has(u.id)),jr:mm(r.jr,l.jr,x=>x.id).filter(j=>!del.has(j.id)),ma:mm(r.ma,l.ma,x=>x.id).filter(j=>!del.has(j.id)),log:mm(r.log,l.log,x=>x.t+x.u+x.a).sort((a,b)=>b.t.localeCompare(a.t)).slice(0,300)}}
 async function save(){st.v++;try{const r=await pull();st=merge(r,st);await fetch(API,{method:'POST',body:JSON.stringify(st)})}catch(e){toast('Gagal menyimpan ke Google Sheets. Periksa koneksi dan URL Web App.')}}
 function delJ(id){if(!confirm('Hapus jurnal ini?'))return;const j=st.jr.find(x=>x.id===id);st.jr=st.jr.filter(x=>x.id!==id);(st.del=st.del||[]).push(id);lg('Hapus jurnal',fd(j.tgl)+' '+j.kelas+' jam '+j.jam);save();render()}
 function delG(id){const g=st.users.find(u=>u.id===id);if(!confirm('Hapus guru '+g.nama+'? Jurnalnya tetap tersimpan.'))return;st.users=st.users.filter(u=>u.id!==id);(st.del=st.del||[]).push(id);lg('Hapus guru',g.nama);save();render()}
