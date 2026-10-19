@@ -174,62 +174,64 @@ th{background:transparent;border-bottom:2px solid var(--b)}
 </style>
 
 
-<style id="header-redesign-final">
-/* Header final: ringkas, stabil, dan responsif */
+<style id="cerdas-professional-layout">
+/* CERDAS branding refinement: visual-only; application logic and features remain unchanged */
 #app > header.h{
-  min-height:94px!important;height:auto!important;padding:16px clamp(16px,2.4vw,36px)!important;
-  display:flex!important;flex-direction:row!important;align-items:center!important;gap:16px!important;
-  overflow:visible!important;background:linear-gradient(110deg,#111638 0%,#25215f 56%,#4b43c8 100%)!important;
+  min-height:126px!important; padding:20px clamp(18px,2.8vw,42px)!important;
+  display:flex!important; align-items:center!important; gap:20px!important;
+  background:linear-gradient(112deg,#111638 0%,#25215f 52%,#4841c8 100%)!important;
+  border-bottom:1px solid rgba(255,255,255,.13)!important;
+  box-shadow:0 8px 28px rgba(21,24,68,.18)!important;
 }
-#app > header.h > .logo{width:48px!important;height:48px!important;flex:0 0 48px!important;border-radius:15px!important}
-#app > header.h > .logo svg{width:27px!important;height:27px!important}
-#app > header.h > div:nth-child(2){
-  min-width:0!important;flex:1 1 auto!important;width:auto!important;display:flex!important;
-  flex-direction:column!important;align-items:flex-start!important;gap:2px!important;line-height:1.25!important;overflow:visible!important
+#app > header.h > .logo{width:54px!important;height:54px!important;flex:0 0 54px!important;border-radius:17px!important}
+#app > header.h > div:nth-child(2){min-width:0!important;flex:1 1 auto!important;display:grid!important;grid-template-columns:minmax(205px, .9fr) minmax(260px,1.2fr)!important;align-items:center!important;column-gap:28px!important;row-gap:0!important}
+#app > header.h .brand-lockup{min-width:0!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:5px!important;padding-right:22px!important;border-right:1px solid rgba(255,255,255,.2)!important}
+#app > header.h .m3d.sm{display:flex!important;flex-direction:row!important;align-items:center!important;gap:2px!important;margin:0!important;white-space:nowrap!important}
+#app > header.h .m3d.sm span{font-size:31px!important;line-height:1.08!important;letter-spacing:.025em!important;text-shadow:1px 1px 0 #f0a500,2px 2px 0 #d08900,3px 3px 0 #b06f00,4px 6px 7px rgba(0,0,0,.32)!important}
+#app > header.h .brand-expansion{display:block!important;max-width:310px!important;color:rgba(255,255,255,.83)!important;font-size:10.5px!important;line-height:1.35!important;font-weight:500!important;letter-spacing:.01em!important;white-space:normal!important}
+#app > header.h .app-identity{min-width:0!important;display:flex!important;flex-direction:column!important;gap:5px!important}
+#app > header.h .app-identity b{font-size:20px!important;line-height:1.2!important;letter-spacing:-.45px!important;color:#fff!important}
+#app > header.h .app-identity small{font-size:11.5px!important;line-height:1.45!important;opacity:.76!important;white-space:normal!important}
+#app > header.h .ur{flex:0 0 auto!important;max-width:210px!important;gap:12px!important;margin-left:auto!important}
+#app > header.h .nm{font-size:12px!important;line-height:1.4!important}
+#app > header.h .nm a{display:inline-block!important;margin-top:5px!important;padding:4px 11px!important;border:1px solid rgba(255,255,255,.25)!important;border-radius:999px!important;color:#ffe09a!important}
+#app > header.h .av{width:40px!important;height:40px!important;flex:0 0 40px!important}
+.login-brand-name{display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.login-brand-name .m3d{display:flex;flex-direction:row;gap:3px;white-space:nowrap}
+.login-brand-name .m3d span{font-size:clamp(38px,4vw,58px);line-height:1.08}
+.login-brand-name .m3s{font-size:12px;line-height:1.5;max-width:340px;margin:0;opacity:.88}
+@media(max-width:980px) and (min-width:761px){
+ #app > header.h{gap:14px!important;padding:16px 20px!important}
+ #app > header.h > div:nth-child(2){grid-template-columns:minmax(165px,.85fr) minmax(220px,1.15fr)!important;column-gap:18px!important}
+ #app > header.h .m3d.sm span{font-size:27px!important}
+ #app > header.h .app-identity b{font-size:17px!important}
+ #app > header.h .ur{max-width:175px!important}
 }
-/* Ganti huruf animasi yang rawan terbungkus menjadi wordmark satu baris */
-#app > header.h .m3r{display:none!important}
-#app > header.h > div:nth-child(2)::before{
-  content:"MANTRA";display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:21px;font-weight:800;
-  line-height:1.1;letter-spacing:.12em;color:#ffd166;text-shadow:0 2px 8px rgba(255,193,51,.18);margin-bottom:2px
-}
-#app > header.h > div:nth-child(2) > b{font-size:15px!important;line-height:1.3!important;letter-spacing:-.2px!important;white-space:normal!important}
-#app > header.h > div:nth-child(2) > small{font-size:11px!important;line-height:1.4!important;opacity:.8!important;white-space:normal!important}
-#app > header.h .ur{flex:0 0 auto!important;max-width:240px!important;margin-left:auto!important;display:flex!important;align-items:center!important;gap:11px!important}
-#app > header.h .nm{display:block!important;font-size:12px!important;line-height:1.4!important;overflow-wrap:anywhere!important}
-#app > header.h .nm a{display:inline-block!important;margin-top:5px!important;padding:4px 11px!important;border:1px solid rgba(255,255,255,.28)!important;border-radius:999px!important;color:#ffdc82!important;text-decoration:none!important}
-#app > header.h .av{width:38px!important;height:38px!important;flex:0 0 38px!important;font-size:14px!important}
-#app .wrap{padding:16px clamp(12px,1.8vw,24px)!important;gap:18px!important;min-width:0!important}
-#app nav{width:220px!important;flex:0 0 220px!important;top:112px!important}
-#app main{flex:1 1 auto!important;min-width:0!important;max-width:none!important;padding:6px 8px!important}
-#app .hero{padding:26px 30px!important;border-radius:24px!important}
-#app .hero h2{font-size:clamp(23px,2vw,30px)!important}
 @media(max-width:760px){
- #app > header.h{min-height:74px!important;padding:10px 12px!important;gap:10px!important;display:flex!important;align-items:center!important}
- #app > header.h > .logo{width:38px!important;height:38px!important;flex:0 0 38px!important;border-radius:12px!important}
- #app > header.h > .logo svg{width:22px!important;height:22px!important}
- #app > header.h > div:nth-child(2){flex:1 1 auto!important;min-width:0!important}
- #app > header.h > div:nth-child(2)::before{font-size:16px!important;letter-spacing:.1em!important;margin-bottom:1px!important}
- #app > header.h > div:nth-child(2) > b{font-size:12px!important;line-height:1.25!important}
- #app > header.h > div:nth-child(2) > small{font-size:9px!important;line-height:1.3!important}
- #app > header.h .ur{flex:0 0 32px!important;max-width:32px!important;margin-left:0!important;justify-content:flex-end!important}
+ #app > header.h{min-height:0!important;padding:13px 14px!important;gap:11px!important;display:grid!important;grid-template-columns:42px minmax(0,1fr) 34px!important;align-items:center!important}
+ #app > header.h > .logo{width:42px!important;height:42px!important;flex:none!important;border-radius:13px!important;grid-column:1!important;grid-row:1!important}
+ #app > header.h > div:nth-child(2){grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:4px!important;width:100%!important;overflow:hidden!important}
+ #app > header.h .brand-lockup{border:0!important;padding:0!important;gap:2px!important}
+ #app > header.h .m3d.sm span{font-size:23px!important;letter-spacing:.015em!important}
+ #app > header.h .brand-expansion{font-size:8.5px!important;line-height:1.25!important;max-width:100%!important}
+ #app > header.h .app-identity{gap:1px!important}
+ #app > header.h .app-identity b{font-size:11.5px!important;line-height:1.25!important}
+ #app > header.h .app-identity small{font-size:8px!important;line-height:1.3!important}
+ #app > header.h .ur{grid-column:3!important;grid-row:1!important;max-width:none!important;margin:0!important;justify-content:flex-end!important}
  #app > header.h .nm{display:none!important}
  #app > header.h .av{width:32px!important;height:32px!important;flex:0 0 32px!important;font-size:12px!important}
- #app .wrap{padding:0!important;gap:0!important;display:flex!important;flex-direction:column!important}
- #app nav{width:auto!important;flex:0 0 auto!important;top:auto!important}
- #app main{padding:14px 12px 100px!important}
- #app .hero{padding:20px!important;border-radius:18px!important;margin-bottom:14px!important}
- #app .hero h2{font-size:22px!important;line-height:1.2!important}
- #app .hero p{font-size:13px!important;max-width:100%!important}
+ .login-brand-name .m3d span{font-size:42px}
+ .login-brand-name .m3s{font-size:11px}
 }
 @media(max-width:380px){
- #app > header.h{padding:9px!important;gap:8px!important}
- #app > header.h > .logo{width:34px!important;height:34px!important;flex-basis:34px!important}
- #app > header.h > div:nth-child(2)::before{font-size:14px!important}
- #app > header.h > div:nth-child(2) > b{font-size:11px!important}
- #app > header.h > div:nth-child(2) > small{font-size:8px!important}
+ #app > header.h{grid-template-columns:36px minmax(0,1fr) 30px!important;padding:10px!important;gap:8px!important}
+ #app > header.h > .logo{width:36px!important;height:36px!important}
+ #app > header.h .m3d.sm span{font-size:20px!important}
+ #app > header.h .brand-expansion{font-size:7.5px!important}
+ #app > header.h .app-identity b{font-size:10.5px!important}
+ #app > header.h .app-identity small{font-size:7px!important}
+ #app > header.h .av{width:29px!important;height:29px!important;flex-basis:29px!important}
 }
-@media(prefers-reduced-motion:reduce){#app .m3d span{animation:none!important}}
 </style>
 
 </head><body>
@@ -260,14 +262,14 @@ async function init(){
 }
 function shell(body){const u=user();const G=[['dash','🏠','Dashboard'],['jurnal','📝','Jurnal Mengajar'],['refl','💭','Refleksi'],['rekap','📋','Rekap Jurnal'],['profil','👤','Profil']],K=[['dash','🏠','Dashboard'],['mon','🔍','Monitoring Jurnal'],['refk','💭','Refleksi Guru'],['rg','👥','Rekap Guru'],['rp','📊','Rekap Pembelajaran'],['lap','🖨️','Laporan'],['dg','🧑‍🏫','Data Guru'],['set','⚙️','Pengaturan']];
  const M=u.role==='ks'?K:G;
- return `<header class="h"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b1c00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/></svg></div><div><div class="m3r"><div class="m3d sm" role="img" aria-label="MANTRA"><span style="--i:0">M</span><span style="--i:1">A</span><span style="--i:2">N</span><span style="--i:3">T</span><span style="--i:4">R</span><span style="--i:5">A</span></div><span class="m3p"><b>M</b>engajar <b>A</b>ktif <b>N</b>yata <b>T</b>ercatat <b>R</b>api <b>A</b>kurat</span></div><b>Jurnal Mengajar Digital</b><small>UPTD SPF SD Negeri Lanas 1 · Tahun Pelajaran 2026/2027</small></div><div class="ur"><div class="nm">${esc(u.nama)}<br><a href="#" onclick="out();return false">Keluar</a></div><div class="av">${esc((u.nama||'?').trim().charAt(0).toUpperCase())}</div></div></header>
+ return `<header class="h"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b1c00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/></svg></div><div><div class="brand-lockup"><div class="m3d sm" role="img" aria-label="CERDAS"><span style="--i:0">C</span><span style="--i:1">E</span><span style="--i:2">R</span><span style="--i:3">D</span><span style="--i:4">A</span><span style="--i:5">S</span></div><div class="brand-expansion">Catatan Elektronik Rencana dan Dokumentasi Aktivitas Sekolah</div></div><div class="app-identity"><b>Jurnal Mengajar Digital</b><small>UPTD SPF SD Negeri Lanas 1 <span aria-hidden="true">·</span> Tahun Pelajaran 2026/2027</small></div></div><div class="ur"><div class="nm">${esc(u.nama)}<br><a href="#" onclick="out();return false">Keluar</a></div><div class="av">${esc((u.nama||'?').trim().charAt(0).toUpperCase())}</div></div></header>
  <div class="wrap"><nav>${M.map(m=>`<a class="${route===m[0]?'on':''}" onclick="go('${m[0]}')">${m[1]} <span>${m[2]}</span></a>`).join('')}<a onclick="out()">🚪 <span>Keluar</span></a></nav><main>${body}</main></div>`}
 function go(r){route=r;edit=null;flt={};render()}
 function out(){me=null;try{sessionStorage.removeItem('jm_u')}catch(e){}render()}
 function doLogin(){const u=st.users.find(x=>x.user===$('#lu').value.trim()&&x.pw===hash($('#lp').value));if(!u)return toast('Username atau password salah');me=u.id;try{sessionStorage.setItem('jm_u',me)}catch(e){}route='dash';lg('Login','');save();render()}
 function render(){
  const A=$('#app');
- if(!user()){A.innerHTML=`<div class="lg-bg"><div class="lg"><div class="lg-l"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b1c00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/></svg></div><div><div class="m3d" role="img" aria-label="MANTRA"><span style="--i:0">M</span><span style="--i:1">A</span><span style="--i:2">N</span><span style="--i:3">T</span><span style="--i:4">R</span><span style="--i:5">A</span></div><div class="m3s"><b>M</b>engajar <b>A</b>ktif <b>N</b>yata <b>T</b>ercatat <b>R</b>api <b>A</b>kurat</div><h1>Jurnal Mengajar Digital</h1><p style="margin-top:10px">Pencatatan dan pemantauan kegiatan pembelajaran guru secara tertib, transparan, dan akuntabel.</p></div><p>UPTD SPF SD Negeri Lanas 1<br>Kec. Botolinggo · Kab. Bondowoso · Jawa Timur<br>Tahun Pelajaran 2026/2027</p></div><div class="lg-r"><h2>Masuk</h2><label for="lu">Username</label><input id="lu" autocapitalize="none" autocomplete="username"><br><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"><br><button onclick="doLogin()">Masuk</button><p class="hint">Akun awal Kepala Sekolah: <b>kepsek</b> / <b>lanas1</b> (segera ubah di Pengaturan). Akun guru dibuat oleh Kepala Sekolah di menu Data Guru.</p></div></div></div>`;return}
+ if(!user()){A.innerHTML=`<div class="lg-bg"><div class="lg"><div class="lg-l"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b1c00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/></svg></div><div><div class="login-brand-name"><div class="m3d" role="img" aria-label="CERDAS"><span style="--i:0">C</span><span style="--i:1">E</span><span style="--i:2">R</span><span style="--i:3">D</span><span style="--i:4">A</span><span style="--i:5">S</span></div><div class="m3s">Catatan Elektronik Rencana dan Dokumentasi Aktivitas Sekolah</div></div><h1>Jurnal Mengajar Digital</h1><p style="margin-top:10px">Pencatatan dan pemantauan kegiatan pembelajaran guru secara tertib, transparan, dan akuntabel.</p></div><p>UPTD SPF SD Negeri Lanas 1<br>Kec. Botolinggo · Kab. Bondowoso · Jawa Timur<br>Tahun Pelajaran 2026/2027</p></div><div class="lg-r"><h2>Masuk</h2><label for="lu">Username</label><input id="lu" autocapitalize="none" autocomplete="username"><br><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"><br><button onclick="doLogin()">Masuk</button><p class="hint">Akun awal Kepala Sekolah: <b>kepsek</b> / <b>lanas1</b> (segera ubah di Pengaturan). Akun guru dibuat oleh Kepala Sekolah di menu Data Guru.</p></div></div></div>`;return}
  const u=user(),ks=u.role==='ks';
  const V={dash:ks?vDashK:vDashG,jurnal:vJurnal,form:vForm,rekap:vRekap,refl:vRefl,rform:vRForm,refk:vRefK,profil:vProfil,mon:vMon,rg:vRG,rp:vRP,lap:vLap,dg:vDG,set:vSet};
  A.innerHTML=shell((V[route]||vDashG)());
